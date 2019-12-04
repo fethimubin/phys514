@@ -1,0 +1,36 @@
+
+The good:
+
+Fixed all of the existing errors.
+All tests pass. 
+Created test for analytical Jacobian's accuracy.
+Created test for using analytical vs approximated Jacobian.
+Throws an exception if newton.solve fails to converge.
+
+
+The bad:
+
+Test of analytical Jacobian being used: -2
+While you do test that the analytical Jacobian is stored with Newton, you don't show that the solve routine actually uses it. Right idea but you have to be thorough with tests or a bug will sneak through eventually.
+
+Other comments:
+
+Generally tests should print nothing unless they fail.
+
+Good use of user-defined Exceptions.
+
+Descriptive commenting within code.
+
+Descriptive readme.
+
+Good use of #!/usr/bin/env python for tests.
+
+Good tests of higher dimensions.
+
+Good use of classes for functions and generalization to higher dimensions.
+
+
+Grade:
+98/100
+
+

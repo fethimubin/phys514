@@ -23,13 +23,35 @@ class TestFunctions(unittest.TestCase):
         dx = 1.e-6
         Df_x = F.ApproximateJacobian(f, x0, dx)
         self.assertEqual(Df_x.shape, (2,2))
-        N.testing.assert_array_almost_equal(Df_x, A)
+        N.testing.assert_array_almost_equal(Df_x, A) 
 
+    # used less special coordinates to make sure it warks, changed
+    # asserEqual to assertAlmostEqual to handle double precision
     def testPolynomial(self):
         # p(x) = x^2 + 2x + 3
-        p = F.Polynomial([1, 2, 3])
+        p = F.Polynomial([1.3, 2.7, 8.6])
         for x in N.linspace(-2,2,11):
-            self.assertEqual(p(x), x**2 + 2*x + 3)
+            self.assertAlmostEqual(p(x), 1.3*x**2 + 2.7*x + 8.6)
+
+    # NOVEL TESTS
+
+    def testAnalyticalNumericalCompare_1D(self): 
+        # compares analytical and numerical Jacobians for scalars
+        x0 = 1.34;
+        dx = 1e-10;
+        Df_x = F.ApproximateJacobian(F.MyGaussian, x0, dx)
+        DfA = F.MyGaussian_der(x0)
+        self.assertAlmostEqual(Df_x, DfA) 
+
+    def testAnalyticalNumericalCompare_2D(self): 
+        # compares analytical and numerical Jacobians for 2D
+        x0 = N.matrix([[1.23],[1.2343]])
+        #dx chosen so that dx**2 (rough numerical error) < double precision
+        dx = 1e-8;
+        Df_x = F.ApproximateJacobian(F.MyNonLinear2D_1, x0, dx)
+        DfA = F.MyNonLinear2D_1_der(x0)
+        N.testing.assert_array_almost_equal(N.array(Df_x), N.array(DfA)) 
+
 
 if __name__ == '__main__':
     unittest.main()

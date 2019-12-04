@@ -1,5 +1,29 @@
 This was HW3 of APC524 of Princeton University in Fall 2010.
 It shows the basic structure of unittesting as well as
 some points to be careful about while testing math-intensive
-functions. unittest is based on some "objects" with methods,
-so we will also mention what they are very briefly.
+functions. Below was the explanation for my solution to the
+homework.
+
+-----------------------------------
+APC524 HW3 for Fethi M Ramazanoglu
+-----------------------------------
+-----------------------------------
+
+I gave the aim of each test in the comments in the code
+
+BUGS COUSING THE FAILURE OF PROVIDED TESTS: 
+1. while numerically calculating the Jacobian, f(x+v)-f(x) was not
+divided by dx
+2. while iterating x to x+dx, h was added rather than subtracted
+
+also
+-maxiter=1 did not work, we added the +1 in the line 
+        for i in xrange(self._maxiter+1): #add 1 
+in Newton in newton.py
+
+-we handle three exceptions
+
+-if f(x) is still too big after maxiter iterations: NonConvergenceError
+-if x_k gets too away from the initial guess x0 : DivergingRootError
+-if the Jacobian becomes singular in the newton iteration 
+(usually bc of numerical precision): SingularJacobianError
