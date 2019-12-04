@@ -1,0 +1,5 @@
+This was HW3 of APC524 of Princeton University in Fall 2010.
+It shows the basic structure of unittesting as well as
+some points to be careful about while testing math-intensive
+functions. unittest is based on some "objects" with methods,
+so we will also mention what they are very briefly.
