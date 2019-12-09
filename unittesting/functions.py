@@ -41,7 +41,7 @@ class Polynomial(object):
     def __call__(self, x):
         return self.f(x)
 
-# extra nonlinear functions and their analytical derivatives for testing
+# extra nonlinear functions and their analytical derivatives for testing sss
 
 def MyGaussian(x):  # gaussian
     return np.exp(-x**2 /2)
